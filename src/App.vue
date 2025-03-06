@@ -29,7 +29,7 @@ const isDraw = () => {
 
 const resetGame = () => {
   squares.value = Array(9).fill(null)
-  currentPlayer.value = 'X'
+   currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X'
 }
 
 const handleClick = (index) => {
@@ -51,7 +51,11 @@ const handleClick = (index) => {
   </div>
   <div v-if="!checkWinner() && !isDraw()" class="flex justify-center items-center text-5xl">
     <div class="grid grid-cols-3 gap-2">
-      <div v-for="(square, index) in squares" :key="index" class="bg-gray-200 border border-black w-30 h-30 flex justify-center items-center text-5xl transition-transform duration-500 ease-in-out transform hover:scale-110" @click="handleClick(index)">
+      <div v-for="(square, index) in squares" :key="index"
+       class="bg-gray-200 border border-black w-30 h-30 flex justify-center items-center text-5xl
+        transition-transform duration-500 ease-in-out transform hover:scale-110"
+        @click="handleClick(index)"
+        >
         {{ square }}
       </div>
     </div>
@@ -60,7 +64,10 @@ const handleClick = (index) => {
     <div v-if="checkWinner() === 'X'" class="text-green-500 animate-bounce">Player X wins!</div>
     <div v-else-if="checkWinner() === 'O'" class="text-green-500 animate-bounce">Player O wins!</div>
     <div v-else class="text-red-500">It's a draw!</div>
-    <button @click="resetGame" class="mt-8 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors duration-300">Restart</button>
+    <button @click="resetGame" class="mt-8 px-4 py-2 bg-blue-500 text-white rounded 
+    hover:bg-blue-700 transition-colors duration-300">
+    Restart
+  </button>
   </div>
 </div>
 </template>
